@@ -1,6 +1,8 @@
 import bodyParser from 'body-parser';
-import express, { Request, Response } from 'express';
+import express from 'express';
 import Movie from '../controllers/movies';
+import userRouter from '../routes/users';
+
 /* import dotenv from 'dotenv'; */
 require('dotenv').config();
 
@@ -10,7 +12,9 @@ const app = express();
 app.use(bodyParser.json());
 
 app.post('/movie', Movie.create);
-app.get('/movie', Movie.getAll)
+app.get('/movie', Movie.getAll);
+
+app.use('/user', userRouter);
 
 app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));
 
