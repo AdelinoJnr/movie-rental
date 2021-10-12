@@ -1,4 +1,5 @@
 import getConnetion from './connection';
+import { ObjectId } from 'mongodb';
 
 interface createMovie {
   title: string,
@@ -18,4 +19,11 @@ const getAll = async () => {
   return movies;
 }
 
-export default { create, getAll }
+const getById = async (id: string) => {
+  if (!ObjectId.isValid(id)) return null;
+  const db = await getConnetion();
+  const movie = await db.collection('movies').findOne({ _id: new ObjectId(id) })
+  return movie;
+}
+
+export default { create, getAll, getById }

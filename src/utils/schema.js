@@ -12,4 +12,10 @@ const userLogin = Joi.object({
   password: Joi.string().required(),
 });
 
-module.exports = { createUser, userLogin }
+const createMovie = Joi.object({
+  title: Joi.string().required(),
+  length: Joi.number().required(),
+  year: Joi.number().required(),
+});
+
+module.exports = { createUser, userLogin, createMovie }

@@ -12,7 +12,8 @@ const userLogin = async (email: string, password: string) => {
 
   const user = await User.findByEmail(email);
   if (!user) return { status: 400, message: 'Email or password invalid!' };
-  if (user.email !== password) return { status: 400, message: 'Email or password invalid!' };
+  
+  if (user.password !== password) return { status: 400, message: 'Email or password invalid!' };
 
   const { password: _, ...dataUser } = user;
   const token = jwt.sign({ data: dataUser }, SECRET);
