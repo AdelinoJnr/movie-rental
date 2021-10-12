@@ -6,7 +6,7 @@ import userRouter from '../routes/users';
 /* import dotenv from 'dotenv'; */
 require('dotenv').config();
 
-const { PORT } = process.env;
+const { PORT = 3000 } = process.env;
 
 const app = express();
 app.use(bodyParser.json());

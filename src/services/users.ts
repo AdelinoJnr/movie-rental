@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb';
 import User from '../models/users';
 import Schema from '../utils/schema';
 
