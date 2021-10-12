@@ -1,4 +1,5 @@
 import Movie from '../models/movies';
+import Schema from '../utils/schema';
 
 interface createMovie {
   title: string,
@@ -7,8 +8,10 @@ interface createMovie {
 }
 
 const create = async (data: createMovie) => {
-  const movie = await Movie.create(data)
+  const { error } = Schema.createMovie.validate(data);
+  if (error) return { status: 400, message: 'Invalid entries!' }
 
+  const movie = await Movie.create(data)
   return { status: 201, data: movie };
 };
 
@@ -18,4 +21,11 @@ const getAll = async () => {
   return { status: 200, data: movies }
 };
 
-export default { create, getAll };
+const getById = async (id: string) => {
+  const movie = await Movie.getById(id);
+  if (!movie) return { status: 404, message: 'Movie does not exist!' };
+
+  return { status: 200, data: movie }
+};
+
+export default { create, getAll, getById };

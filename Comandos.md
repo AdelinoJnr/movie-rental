@@ -28,3 +28,5 @@ Como fazer tipagem em typescript
         data: Object,
     }
 ```
+
+- npm i tsconfig-paths -D
